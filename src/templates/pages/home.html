@@ -8,13 +8,13 @@ This is an awesome title.
 
 {% block content %}
 
-<div class='row text-center'>
+<div class='row text-center d-none'>
     <div class='col'>
         <h1>Welcome to TweetClone!</h1>
     </div>
 </div>
 
-<div class='row mb-2'>
+<div class='row mb-2 d-none'>
     <div class='col-md-4 mx-auto col-10'>
         <form class='form' id='tweet-create-form' method='POST' action='/create-tweet/'>
             {% csrf_token %}
@@ -28,7 +28,9 @@ This is an awesome title.
     </div>
 </div>
 
-<div class = 'row' id='tweets'>
+<div id='root'></div>
+
+<div class = 'row d-none' id='tweets'>
     Loading ...
 
 </div>

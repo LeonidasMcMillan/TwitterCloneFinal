@@ -27,7 +27,7 @@ SECRET_KEY = '4u-%!+izzptk2@g45g9x#^r)#v63!^w+d+#p0_!e4x*f!^(t1s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 LOGIN_URL = "/login"
 
@@ -46,17 +46,23 @@ INSTALLED_APPS = [
     'tweetFun',
     # 3rd-Party
     'rest_framework',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # 3rd Party
+    'corsheaders.middleware.CorsMiddleware',
+    # 3rd Party
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
+    
 
 ROOT_URLCONF = 'TwitterCloneBE.urls'
 
@@ -128,6 +134,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+    ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static-root')
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_URLS_REGEX = r'/api/.*$'
+
 DEFAULT_RENDERER_CLASSES = [
         'rest_framework.renderers.JSONRenderer',
         
@@ -148,3 +164,4 @@ REST_FRAMEWORK = {
 }
 
 TWEET_ACTION_OPTIONS = ['like', 'unlike' 'retweet']
+
